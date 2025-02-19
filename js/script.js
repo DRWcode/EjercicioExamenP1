@@ -5,6 +5,7 @@ function calcularDescuento() {
     const producto4 = parseFloat(document.getElementById('producto4').value) || 0;
     const producto5 = parseFloat(document.getElementById('producto5').value) || 0;
 
+    // validar que sean campos numericos, y que sean valores positivos
     if (isNaN(producto1) || isNaN(producto2) || isNaN(producto3) || isNaN(producto4) || isNaN(producto5) ||
         producto1 < 0 || producto2 < 0 || producto3 < 0 || producto4 < 0 || producto5 < 0) {
         Swal.fire({
@@ -15,9 +16,11 @@ function calcularDescuento() {
         return;
     }
 
+    // calcular subtotal
     const subtotal = producto1 + producto2 + producto3 + producto4 + producto5;
     document.getElementById('subtotal').value = subtotal.toFixed(2);
 
+    // calcular descuento
     let descuento = 0;
     let porcentajeDescuento = 0;
 
@@ -35,9 +38,11 @@ function calcularDescuento() {
         porcentajeDescuento = 10;
     }
 
+   // actualizar el label
     document.getElementById('descuentoLabel').innerText = `Descuento ${porcentajeDescuento}%`;
     document.getElementById('descuento').value = descuento.toFixed(2);
 
+   // calcular subtotal 
     const total = subtotal - descuento;
     document.getElementById('total').value = total.toFixed(2);
 }
